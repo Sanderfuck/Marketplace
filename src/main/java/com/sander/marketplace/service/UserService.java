@@ -1,6 +1,5 @@
 package com.sander.marketplace.service;
 
-import com.sander.marketplace.model.Product;
 import com.sander.marketplace.model.User;
 import com.sander.marketplace.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

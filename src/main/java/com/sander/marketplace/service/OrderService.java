@@ -1,12 +1,15 @@
 package com.sander.marketplace.service;
 
 import com.sander.marketplace.model.Order;
+import com.sander.marketplace.model.Product;
 import com.sander.marketplace.model.User;
 import com.sander.marketplace.repository.OrderRepository;
 import com.sander.marketplace.repository.ProductRepository;
 import com.sander.marketplace.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -31,7 +34,15 @@ public class OrderService {
             userService.addUser(user);
             return orderRepository.save(order);
         }
-        throw new RuntimeException("User havn`t enough money for buying this product");
+        throw new RuntimeException("User haven`t enough money for buying this product");
+    }
+
+    public List<Product> findAllProductsByUserId(Long userId) {
+        return orderRepository.findAllProductsByUserId(userId);
+    }
+
+    public List<User> findAllUsersByProductId(Long productId) {
+        return orderRepository.findAllUsersByProductId(productId);
     }
 
     public long getUserAmount(long id) {
