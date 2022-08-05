@@ -1,5 +1,6 @@
 package com.sander.marketplace.controller;
 
+import com.sander.marketplace.exception.ProductNotFoundException;
 import com.sander.marketplace.model.Product;
 import com.sander.marketplace.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,9 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public Product findById(@PathVariable Long id) {
-        return productService.getProductById(id);
+        Product productById = productService.getProductById(id);
+        if (productById == null) throw new ProductNotFoundException();
+        return productById;
     }
 
     @PostMapping("/products")
